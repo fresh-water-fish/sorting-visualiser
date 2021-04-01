@@ -6,6 +6,7 @@ using namespace std;
 // declare functions
 int main();
 void initialise();
+void sortSub();
 
 // global variables
 int* sortArray;
@@ -68,3 +69,6 @@ void initialise()
 }
 
 void sortSub()
+{
+
+}
