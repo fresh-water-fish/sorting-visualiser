@@ -57,6 +57,7 @@ void free_vertex(Vertex *vertex)
 		free_node(vertex->edges->head);
 		vertex->edges->head = next;
 	}
+	free(vertex->edges);
 	free(vertex);
 }
 
