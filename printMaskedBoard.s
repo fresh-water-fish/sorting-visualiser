@@ -80,12 +80,13 @@ printMaskedBoard
 ; if mask is 0 then do not print value
 	CMP R6, #0
 	MOVNE R1, #35
-	BLNE printIntCharSpace
+	BLNE printHashBranch
 ; otherwise print the value
  	CMP R5, #0
  	MOVEQ R1, #32
  	MOVLT R1, #77
  	MOVGT R1, R5
+printHashBranch
  	BL printIntCharSpace
  	ADD R4, R4, #1
  	CMP R4, #9
