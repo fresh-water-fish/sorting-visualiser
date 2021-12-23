@@ -36,7 +36,7 @@ boardSquareCond
 ; first char read with success, now comma
 	MOV R4, R1
 	MOV R1, #44
-	boardSquareReadChar
+	BL boardSquareReadChar
 	CMP R3, #0
 	MOVNE R0, R2
 	SWINE 3
