@@ -71,7 +71,7 @@ boardSquareReadIndex
 	CMP R1, #48 ; > 0
 	BLE boardSquareIndexError
 	CMP R1, #57 ; < 9
-	MOVGE PC, LR
+	BGE boardSquareIndexError
 	MOVLE R3, #0
 	SUB R1, R1, #49 ; CHAR --> INT
 	LDMFD R13!, {PC}
