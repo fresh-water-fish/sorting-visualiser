@@ -61,6 +61,7 @@ boardSquareReadIndex
 	STMFD R13!, {LR}
 	MOV R3, #255
 	SWI 1
+	SWI 0
 	MOV R1, R0
 	CMP R1, #48 ; > 0
 	BLE boardSquareIndexError
@@ -80,6 +81,7 @@ boardSquareReadChar
 	STMFD R13!, {LR}
 	MOV R3, #255
 	SWI 1
+	SWI 0
 	CMP R0, R1
 	MOVEQ R3, #0
 	BLNE boardSquareWaitTillNL
@@ -88,6 +90,7 @@ boardSquareReadChar
 ; will wait until a new line feed
 boardSquareWaitTillNL
 	SWI 1
+	SWI 0
 	CMP R0, #10
 	BNE boardSquareWaitTillNL
 	MOV PC, LR
