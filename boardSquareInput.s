@@ -47,9 +47,10 @@ boardSquareCond
 	MOV R5, R1
 ; must wait for newline feed
 	MOV R1, #10
-	BL boardSquareReadChar
-	CMP R3, #0
-	BNE boardSquareCond
+	SWI 1
+	SWI 0
+	CMP R0, #10
+	BLNE boardSquareCond
 ; success secured!
 	MUL R0, R4, R5
 	STMFD R13!, {R4-R8, PC}
@@ -62,6 +63,8 @@ boardSquareReadIndex
 	MOV R3, #255
 	SWI 1
 	SWI 0
+	CMP R0, #10
+	LDMFDEQ R13!, {PC}
 	MOV R1, R0
 	CMP R1, #48 ; > 0
 	BLE boardSquareIndexError
@@ -82,6 +85,8 @@ boardSquareReadChar
 	MOV R3, #255
 	SWI 1
 	SWI 0
+	CMP R0, #10
+	LDMFDEQ R13!, {PC}
 	CMP R0, R1
 	MOVEQ R3, #0
 	BLNE boardSquareWaitTillNL
