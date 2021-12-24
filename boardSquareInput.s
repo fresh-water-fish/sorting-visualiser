@@ -86,10 +86,11 @@ boardSquareReadChar
 	SWI 1
 	SWI 0
 	CMP R0, #10
-	LDMFDEQ R13!, {PC}
+	BEQ boardSquareExitEarly
 	CMP R0, R1
 	MOVEQ R3, #0
 	BLNE boardSquareWaitTillNL
+boardSquareExitEarly
 	LDMFD R13!, {PC}
 ; --- * --- * --- * --- * --- * ---
 ; will wait until a new line feed
