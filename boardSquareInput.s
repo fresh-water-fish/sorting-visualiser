@@ -27,25 +27,21 @@ boardSquareInput
 	MOV R13, #0x5000
 	STMFD R13!, {R4-R8, LR}
 boardSquareCond
+	MOV R0, R2
+	SWI 3
 	MOV R4, #0
 	BL boardSquareReadIndex
 	CMP R3, #0
-	MOVNE R0, R2
-	SWINE 3
 	BNE boardSquareCond
 ; first char read with success, now comma
 	MOV R4, R1
 	MOV R1, #44
 	BL boardSquareReadChar
 	CMP R3, #0
-	MOVNE R0, R2
-	SWINE 3
 	BNE boardSquareCond
 ; comma also read successfully, now index again
 	BL boardSquareReadIndex
 	CMP R3, #0
-	MOVNE R0, R2
-	SWINE 3
 	BNE boardSquareCond
 ; index read successfully
 	MOV R5, R1
@@ -53,8 +49,6 @@ boardSquareCond
 	MOV R1, #10
 	BL boardSquareReadChar
 	CMP R3, #0
-	MOVNE R0, R2
-	SWINE 3
 	BNE boardSquareCond
 ; success secured!
 	MUL R0, R4, R5
