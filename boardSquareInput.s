@@ -63,9 +63,9 @@ boardSquareReadIndex
 	MOV R3, #255
 	SWI 1
 	SWI 0
-	CMP R0, #10
-	LDMFDEQ R13!, {PC}
 	MOV R1, R0
+	CMP R0, #10
+	BEQ boardSquareExitEarly
 	CMP R1, #48 ; > 0
 	BLE boardSquareIndexError
 	CMP R1, #57 ; < 9
