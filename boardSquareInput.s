@@ -51,9 +51,11 @@ boardSquareCond
 	SWI 0
 	CMP R0, #10
 	BLNE boardSquareCond
-; success secured!
-	MUL R0, R4, R5
-	STMFD R13!, {R4-R8, PC}
+; calculate index
+; 8(r4) + r5
+	MOV R0, R4 LSL #3
+	ADD R0, R0, R5
+	LDMFD R13!, {R4-R8, PC}
 ; --- * --- * --- * --- * --- * ---
 ; read in the index value
 ; Output: R1 <-- index
