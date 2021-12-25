@@ -111,19 +111,17 @@ generateBoardInc_X
 	CMP R2, #8
 	MOVEQ R2, #0
 	MOV R6, #1
-	MOV R4, R2 LSL #3
 generateBoardInc_Y
 	CMP R3, #8
 	MOVEQ R3, #0
 ; 4 * ( 8r + c )
+	MOV R4, R2 LSL #3
 	ADD R4, R4, R3
 	MOV R4, R4 LSL #2
 	LDR R1, [R0, R4]
 	CMP R1, #-1
-	BEQ generateBoard_skipInc
-	ADD R1, R1, #1
+	ADDNE R1, R1, #1
 	STR R1, [R0, R4]
-generateBoard_skipInc
 ; inc pointers
 	ADD R3, R3, #1
 ; inc counters
