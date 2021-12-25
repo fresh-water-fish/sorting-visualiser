@@ -42,7 +42,6 @@ generateBoard
 ; --- * --- * --- * --- * --- * ---
 ; populate the board with R1 mines
 ; Input: R0 --> board
-;        R1 --> mines count
 ; Output: R0 <-- board
 generateBoardPopulateMines
 	STMFD R13!, {LR}
@@ -61,7 +60,7 @@ generateBoardTakenIndex
 	STR R7, [R4, R0]
 
 	ADD R5, R5, #1
-	CMP R5, R1
+	CMP R5, #8
 	BNE generateBoardPMCond
 
 	MOV R0, R4
