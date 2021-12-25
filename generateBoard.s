@@ -58,11 +58,9 @@ generateBoardTakenIndex
 	CMP R6, #0
 	BNE generateBoardTakenIndex
 	STR R7, [R4, R0]
-
 	ADD R5, R5, #1
 	CMP R5, #8
 	BNE generateBoardPMCond
-
 	MOV R0, R4
 	LDMFD R13!, {PC}
 	
@@ -122,8 +120,10 @@ generateBoardInc_Y
 	MOV R4, R4 LSL #2
 	LDR R1, [R0, R4]
 	CMP R1, #-1
-	ADDNE R1, R1, #1
-	STRNE R1, [R0, R4]
+	BEQ generateBoard_skipInc
+	ADD R1, R1, #1
+	STR R1, [R0, R4]
+generateBoard_skipInc
 ; inc pointers
 	ADD R3, R3, #1
 ; inc counters
