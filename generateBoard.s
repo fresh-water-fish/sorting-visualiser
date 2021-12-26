@@ -27,13 +27,13 @@ test_generateBoard
 ; Input R0 -- array to generate board in
 generateBoard
 	STMFD R13!, {R4-R8, LR}
-;	MOV R1,#0
-;	MOV R2,#0
-;gb_Clear
-;	STR R2,[R0, R1 LSL #2] 
-;	ADD R1,R1, #1
-;	CMP R1,#64
-;	BLT gb_Clear
+	MOV R1,#0
+	MOV R2,#0
+gb_Clear
+	STR R2,[R0, R1 LSL #2] 
+	ADD R1,R1, #1
+	CMP R1,#64
+	BLT gb_Clear
 	BL generateBoardPopulateMines
 	BL generateBoardNumbers
 	
@@ -42,7 +42,7 @@ generateBoard
 ; --- * --- * --- * --- * --- * ---
 ; populate the board with R1 mines
 ; Input: R0 --> board
-; Output: R0 <-- board
+; Output: R0 <-- boarkd
 generateBoardPopulateMines
 	STMFD R13!, {LR}
 	MOV R4, R0
@@ -53,11 +53,10 @@ generateBoardTakenIndex
 	BL randu
 	MOV R0, R0, ASR #8 ; right shift 8 for increased random
 	AND R0, R0, #0x3f  ; mod 64
-	MOV R0, R0 LSL #2  ; index * 4
-	LDR R6, [R4, R0]
+	LDR R6, [R4, R0 LSL #2]
 	CMP R6, #0
 	BNE generateBoardTakenIndex
-	STR R7, [R4, R0]
+	STR R7, [R4, R0 LSL #2]
 	ADD R5, R5, #1
 	CMP R5, #8
 	BNE generateBoardPMCond
@@ -76,12 +75,11 @@ generateBoard_X
 	MOV R4, R5, LSL #3
 generateBoard_Y
 	ADD R4, R4, R6
-	MOV R4, R4 LSL #2
-	LDR R7, [R0, R4]
+	LDR R7, [R0, R4 LSL #2]
 	MOV R2, R5
 	MOV R3, R6
 	CMP R7, #-1
-	BLNE generateBoardInc
+	BLEQ generateBoardInc
 
 	ADD R6, R6, #1
 	CMP R6, #8
@@ -117,11 +115,10 @@ generateBoardInc_Y
 ; 4 * ( 8r + c )
 	MOV R4, R2 LSL #3
 	ADD R4, R4, R3
-	MOV R4, R4 LSL #2
-	LDR R1, [R0, R4]
+	LDR R1, [R0, R4 LSL #2]
 	CMP R1, #-1
 	ADDNE R1, R1, #1
-	STR R1, [R0, R4]
+	STRNE R1, [R0, R4 LSL #2]
 ; inc pointers
 	ADD R3, R3, #1
 ; inc counters
