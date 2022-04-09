@@ -1,0 +1,42 @@
+/* Color scheme
+ * primary:
+ * 	#212121
+ * 		darker - #000000
+ * 		lighter - #484848
+ * 	text - #ffffff
+ *
+ * secondary:
+ * 	#ff7043
+ * 		darker - #c63f17
+ * 		lighter - #ffa270
+ * 	text - #000000
+ */
+
+body {
+	/* background-color:#282828; */
+	/* color:#ffffff; */
+	background-color:#484848;
+	color:#ffffff;
+}
+
+h1 {
+	background-color:#212121;
+	color:#ff7043;
+}
+
+/* .entity-selector .attribute-selector { */
+/* 	display:none; */
+/* 	visibility:hidden; */
+/* } */
+
+.main {
+	margin-left:160px; /* Same as the width of the sidenav */
+	font-size:28px; /* Increased text to enable scrolling */
+	padding:0px 10px;
+}
+
+/* these divs should start off hidden */
+.start-hidden {
+	display:none;
+	visibility:hidden;
+}
